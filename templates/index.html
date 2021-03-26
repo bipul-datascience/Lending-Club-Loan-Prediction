@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lending Club Loan Prediction By Bipul</title>
+</head>
+
+<body>
+
+    <div style="color:black">
+        <form action="{{ url_for('predict')}}" method="post">
+            <h2>Lending Club Loan Prediction</h2>
+            <h3>Loan Amount (1000$-35000$)</h3>
+            <input id="first" name="loan_amnt" type="number ">
+            <h3>Term (36 months or 60 months)</h3><br><input id="second" name="term" required="required">
+            <h3>Interest Rate</h3><input id="third" name="int_rate" required="required">
+            <h3>Year of opening credit lines</h3><input id="fourth" name="earliest_cr_line" required="required">
+            <h3>What Is the Annual Income</h3><br><input name="annual_inc" id="fifth" required="required">
+            <h3>DTI Ratio?</h3><br><input id="sixth" name="dti" required="required">
+            <h3>The number of open credit lines in the borrower's credit file?</h3><br><input id="seventh" name="open_acc" required="required">
+            <h3>Number of derogatory public records?</h3><br><input id="eighth" name="pub_rec" required="required">
+            <h3>Total credit revolving balance?</h3><br><input id="ninth" name="revol_bal" required="required">
+            <h3>Revolving line utilization rate?</h3><br><input id="tenth" name="revol_util" required="required">
+            <h3>The total number of credit lines in the borrower's credit file</h3><br><input id="eleventh" name="total_acc" required="required">
+            <h3>Number of mortgage accounts</h3><br><input id="twelfth" name="mort_acc" required="required">
+            <h3>Number of Bankruptcies</h3><br><input id="thirteenth" name="pub_rec_bankruptcies" required="required">
+             <h3>What Is the Home type?</h3><br><select name="home_ownership" id="home" required="required">       
+                <option value="MORTGAGE">MORTGAGE</option>
+                <option value="NONE">NONE</option>
+                <option value="OTHER">OTHER</option>
+                <option value="OWN">OWN</option>
+                <option value="RENT">RENT</option>
+                <option value="ANY">ANY</option>
+            </select>
+            <h3>Verification Status</h3><br><select name="verification_status" id="resea" required="required">
+                <option value="Verified">Verified</option>
+                <option value="Not Verified">Not Verified</option>
+                <option value="Source Verified">Source Verified</option>
+            </select>
+            
+            <h3>The initial listing status of the loan</h3><br><select name="initial_list_status" id="research" required="required">
+                <option value="w">w</option>
+                <option value="f">f</option>
+            </select>
+            <h3>Type of Application</h3><br><select name="application_type" id="research" required="required">
+                <option value="Joint App">Joint App</option>
+                <option value="Individual">Individual</option>
+                <option value="Direct Pay">Direct Pay</option>
+            </select>
+            <h3>Type of Grade</h3><br><select name="sub_grade" id="research" required="required">
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+                <option value="A3">A3</option>
+                <option value="A4">A4</option>
+                <option value="A5">A5</option>
+                
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+                <option value="B3">B3</option>
+                <option value="B4">B4</option>
+                <option value="B5">B5</option>
+                
+                <option value="C1">C1</option>
+                <option value="C2">C2</option>
+                <option value="C3">C3</option>
+                <option value="C4">C4</option>
+                <option value="C5">C5</option>
+                
+                <option value="D1">D1</option>
+                <option value="D2">D2</option>
+                <option value="D3">D3</option>
+                <option value="D4">D4</option>
+                <option value="D5">D5</option>
+                
+                <option value="E1">E1</option>
+                <option value="E2">E2</option>
+                <option value="E3">E3</option>
+                <option value="E4">E4</option>
+                <option value="E5">E5</option>
+                
+                <option value="F1">F1</option>
+                <option value="F2">F2</option>
+                <option value="F3">F3</option>
+                <option value="F4">F4</option>
+                <option value="F5">F5</option>
+                
+                <option value="G1">G1</option>
+                <option value="G2">G2</option>
+                <option value="G3">G3</option>
+                <option value="G4">G4</option>
+                <option value="G5">G5</option>
+            </select>
+            <h3>What is the Purpose of Loan</h3><br><select name="purpose" id="research" required="required">
+                <option value="credit_card">credit_card</option>
+                <option value="debt_consolidation">debt_consolidation</option>
+                <option value="educational">educational</option>
+                <option value="home_improvement">home_improvement</option>
+                <option value="house">house</option>
+                <option value="major_purchase">major_purchase</option>
+                <option value="medical">medical</option>
+                <option value="moving">moving</option>
+                <option value="other">other</option>
+                <option value="renewable_energy">renewable_energy</option>
+                <option value="small_business">small_business</option>
+                <option value="vacation">vacation</option>
+                <option value="wedding">wedding</option>
+                <option value="car">car</option>
+            </select>
+            <h3>What is your zip code</h3><br><select name="zip_code" id="research" required="required">
+                <option value="05113">05113</option>
+                <option value="11650">11650</option>
+                <option value="22690">22690</option>
+                <option value="29597">29597</option>
+                <option value="30723">30723</option>
+                <option value="48052">48052</option>
+                <option value="70466">70466</option>
+                <option value="86630">86630</option>
+                <option value="93700">93700</option>
+                <option value="00813">00813</option>
+            </select>
+           
+            
+            <br><br><button id="sub" type="submit ">Predict the Loan Status</button>
+            <br>
+
+
+
+
+        </form>
+
+
+
+        <br><br><h3>{{ prediction_text }}<h3>
+    </div>
+
+
+
+
+    <style>
+        body {
+            background-color: #d5f4e6;
+            text-align: center;
+            padding: 0px;
+        }
+        
+        #research {
+            font-size: 18px;
+            width: 100px;
+            height: 23px;
+            top: 23px;
+        }
+        
+        #box {
+            border-radius: 60px;
+            border-color: 45px;
+            border-style: solid;
+            font-family: cursive;
+            text-align: center;
+            background-color: rgb(168, 131, 61);
+            font-size: medium;
+            position: absolute;
+            width: 700px;
+            bottom: 9%;
+            height: 850px;
+            right: 30%;
+            padding: 0px;
+            margin: 0px;
+            font-size: 14px;
+        }
+        
+        #home {
+            width: 83px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 20px;
+        }
+        
+        #fuel:hover {
+            background-color: coral;
+        }
+        
+        #research {
+            width: 99px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+        
+        #research:hover {
+            background-color: coral;
+        }
+        
+        #resea {
+            width: 99px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+        
+        #resea:hover {
+            background-color: coral;
+        }
+        
+        #sub {
+            width: 120px;
+            height: 43px;
+            text-align: center;
+            border-radius: 14px;
+            font-size: 18px;
+        }
+        
+        #sub:hover {
+            background-color: darkcyan;
+        }
+        
+        #first {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #second {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #third {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        #fourth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #fifth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #sixth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #seventh {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+       
+        #eighth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+    
+        #ninth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #tenth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #eleventh {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+
+        #twelfth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+ 
+        #thirteenth {
+            border-radius: 14px;
+            height: 25px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        
+
+
+
+
+
+    </style>
+</body>
+
+</html>
